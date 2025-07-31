@@ -2,7 +2,7 @@ class Lbxd < Formula
   desc "Beautiful command-line tool for Letterboxd - view activity, browse collections, and explore movies"
   homepage "https://github.com/Pranav-Karra-3301/lbxd"
   url "https://github.com/Pranav-Karra-3301/lbxd/archive/refs/tags/v2.2.1.tar.gz"
-  sha256 "d5558cd419c8d46bdc958064cb97f963d1ea793866414c025906ec15033512ed"
+  sha256 "9797a57e5d613aaa885bea12c3059470544e635a18c81891437b6b80c7f0e843"
   license "MIT"
 
   depends_on "rust" => :build
