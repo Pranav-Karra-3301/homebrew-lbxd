@@ -1,8 +1,19 @@
+# Homebrew Formula for lbxd
+# 
+# This formula is maintained in a separate repository:
+# https://github.com/Pranav-Karra-3301/homebrew-lbxd
+# 
+# This file serves as a template for the tap repository.
+# To install via Homebrew:
+#   brew tap pranav-karra-3301/lbxd
+#   brew install lbxd
+#
+# This formula builds lbxd from source with all dependencies
 class Lbxd < Formula
   desc "Beautiful command-line tool for Letterboxd - view activity, browse collections, and explore movies"
   homepage "https://github.com/Pranav-Karra-3301/lbxd"
-  url "https://github.com/Pranav-Karra-3301/lbxd/archive/refs/tags/v2.2.1.tar.gz"
-  sha256 "3b06201752f13685666b754fabe7e27fd37d43dea078066619c53a38d974671e"
+  url "https://github.com/Pranav-Karra-3301/lbxd/archive/refs/tags/v2.2.0.tar.gz"
+  sha256 "2729a2fbab7322a872b3fc2a6656f7cfb9eb84d6535178932cb2ad62329e2b56"
   license "MIT"
 
   depends_on "rust" => :build
@@ -29,7 +40,7 @@ class Lbxd < Formula
   test do
     # Test that the binary runs and shows version
     output = shell_output("#{bin}/lbxd --version")
-    assert_match "lbxd 2.2.1", output
+    assert_match "lbxd 2.2.0", output
 
     # Test that Python dependencies are accessible
     python_cmd = Formula["python@3.12"].opt_bin/"python3"
