@@ -12,18 +12,14 @@
 class Lbxd < Formula
   desc "Beautiful command-line tool for Letterboxd - view activity, browse collections, and explore movies"
   homepage "https://github.com/Pranav-Karra-3301/lbxd"
-  url "https://github.com/Pranav-Karra-3301/lbxd/archive/refs/tags/v2.2.3.tar.gz"
-  sha256 "89401c383796dca50501dbc284fe699b69edeaea2e3e537b8dec055c885f7c53"
+  url "https://github.com/Pranav-Karra-3301/lbxd/archive/refs/tags/v3.0.0.tar.gz"
+  sha256 ""
   license "MIT"
 
   depends_on "rust" => :build
-  depends_on "python@3.12"
-  depends_on "curl"
+  depends_on "viu"
 
   def install
-    # Install Python dependencies
-    system Formula["python@3.12"].opt_bin/"pip3", "install", "letterboxdpy"
-
     # Build Rust project
     system "cargo", "install", *std_cargo_args
 
@@ -32,29 +28,25 @@ class Lbxd < Formula
   end
 
   def post_install
-    # Verify Python dependencies are available
-    python_cmd = Formula["python@3.12"].opt_bin/"python3"
-    system python_cmd, "-c", "import letterboxdpy"
+    # Verify viu is available
+    system "which", "viu"
   end
 
   test do
     # Test that the binary runs and shows version
     output = shell_output("#{bin}/lbxd --version")
-    assert_match "lbxd 2.2.2", output
+    assert_match "lbxd 3.0.0", output
 
-    # Test that Python dependencies are accessible
-    python_cmd = Formula["python@3.12"].opt_bin/"python3"
-    system python_cmd, "-c", "import letterboxdpy"
+    # Test that viu is accessible
+    system "viu", "--version"
   end
 
   def caveats
     <<~EOS
-      lbxd requires Python 3 with the letterboxdpy package.
+      lbxd requires viu for displaying movie posters.
       
       Dependencies installed:
-      - Python 3.12
-      - letterboxdpy (Python package)
-      - curl (for network requests)
+      - viu (terminal image viewer)
       
       Usage:
         # Show version and help
